@@ -1,6 +1,6 @@
 const mysql = require('mysql2/promise');
 
-const { DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD } =
+const { DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD, DATABASE_PORT } =
   process.env;
 
 const pool = mysql.createPool({
@@ -8,6 +8,7 @@ const pool = mysql.createPool({
   database: DATABASE_NAME,
   user: DATABASE_USER,
   password: DATABASE_PASSWORD,
+  port: DATABASE_PORT,
 });
 
 module.exports = { pool };
