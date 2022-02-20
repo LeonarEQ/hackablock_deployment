@@ -16,7 +16,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static(staticPath));
 
-const whitelist = [process.env.FRONTEND_URL];
+const whitelist = ['https://pure-harbor-58800.herokuapp.com'];
 const corsOptions = {
   // Revisar si la petición viene de un servidor en la lista blanca
   origin: (origin, callback) => {
