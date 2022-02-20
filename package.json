@@ -1,0 +1,48 @@
+{
+  "name": "hackablock-api",
+  "version": "1.0.0",
+  "description": "App to manage elearning courses",
+  "main": "index.js",
+  "prettier": {
+    "singleQuote": true
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "desarrollo": "nodemon ./server.js",
+    "start": "node ./server.js"
+  },
+  "keywords": [
+    "blockchain",
+    "developer"
+  ],
+  "author": "Hackablock.dev",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^5.0.0-beta.0",
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "cores": "^0.8.5",
+    "cors": "^2.8.5",
+    "create-use-context": "^1.0.1",
+    "dotenv": "^8.6.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "helpers": "0.0.6",
+    "html-to-text": "^8.0.0",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "juice": "^8.0.0",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
+    "nodemailer": "^6.6.3",
+    "react-spinners": "^0.11.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}

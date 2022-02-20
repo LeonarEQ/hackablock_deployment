@@ -1,0 +1,263 @@
+Tabla Usuarios
+                //Datos obligatorios
+                id
+                nombre
+                apellido
+                email
+                contraseña
+                //Datos opcionales
+                biografia
+                sitio web
+                twitter
+                facebook
+                linkedin
+                youtube
+                avatar
+
+                //Roles
+                tutor  
+                admin
+
+                //Perfil Tutor
+                tutor_direccion
+                tutor_titulo
+                tutor_telefono
+                tutor_precio
+                tutor_paypal
+                categoria_blockchain 
+                categoria_bitcoin 
+                categoria_cripto 
+                categoria_ethereum
+                categoria_hyperledger
+
+
+Tabla  usuarios-cursos
+                id
+                id_usuario->usuarios->id
+                id_curso->cursos->id
+
+
+Tabla cursos
+
+                id 
+                titulo 
+                duracion 
+                parrafo_1 
+                parrafo_2 
+                imagen 
+                tutor->usuarios->id (where tutor=1)
+                tutor_avatar->usuarios->avatar
+                valoracion 
+                        1-5
+                nivel 
+                    Básico
+                    Intermedio
+                    Experto
+                fecha_creacion
+                n_visitas
+                categoria_blockchain 1
+                categoria_bitcoin 0
+                categoria_cripto 1
+                categoria_ethereum
+                categoria_hyperledger
+
+
+
+>>>>>>>>>>>>Si el curso tuviera mas de 1 categoria
+
+Tabla categorias
+                id
+                nombre
+
+Tabla cursos-categorias
+                id
+                id_curso
+                id_categoria
+
+ TABLA usuarios
+
+
+CREATE DATABASE IF NOT EXISTS hackablock;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  `apellido` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `contraseña` varchar(45) NOT NULL,
+  `biografia` varchar(500) DEFAULT NULL,
+  `sitio_web` varchar(100) DEFAULT NULL,
+  `twitter` varchar(100) DEFAULT NULL,
+  `facebok` varchar(100) DEFAULT NULL,
+  `linkedin` varchar(100) DEFAULT NULL,
+  `youtube` varchar(100) DEFAULT NULL,
+  `avatar` varchar(100) DEFAULT NULL,
+  `tutor` int DEFAULT NULL,
+  `admin` int DEFAULT NULL,
+  `tutor_direccion` varchar(45) DEFAULT NULL,
+  `tutor_titulo` varchar(45) DEFAULT NULL,
+  `tutor_telefono` varchar(9) DEFAULT NULL,
+  `tutor_precio` int DEFAULT NULL,
+  `tutor_valoracion` int DEFAULT NULL,
+  `tutor_paypal` varchar(30) DEFAULT NULL,
+  `categoria_blockchain` int DEFAULT NULL,
+  `categoria_bitcoin` int DEFAULT NULL,
+  `categoria_cripto` int DEFAULT NULL,
+  `categoria_ethereum` int DEFAULT NULL,
+  `categoria_hyperledger` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS cursos (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(45) DEFAULT NULL,
+  `duracion` int DEFAULT NULL,
+  `precio` int DEFAULT NULL,
+  `parrafo_1` varchar(200) DEFAULT NULL,
+  `parrafo_2` varchar(200) DEFAULT NULL,
+  `imagen` varchar(45) DEFAULT NULL,
+  `id_tutor` int DEFAULT NULL,
+  `avatar_tutor` varchar(45) DEFAULT NULL,
+  `valoracion` int DEFAULT NULL,
+  `nivel` varchar(10) DEFAULT NULL,
+  `fecha_creacion` date DEFAULT NULL,
+  `n_visitas` int DEFAULT NULL,
+  `categoria_blockchain` int unsigned DEFAULT NULL,
+  `categoria_bitcoin` int unsigned DEFAULT NULL,
+  `categoria_cripto` int unsigned DEFAULT NULL,
+  `categoria_ethereum` int unsigned DEFAULT NULL,
+  `categoria_hyperledger` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE IF NOT EXISTS usuarios_cursos (
+  `usuarios_id` int unsigned NOT NULL,
+  `cursos_id` int unsigned NOT NULL,
+  PRIMARY KEY (`usuarios_id`,`cursos_id`),
+  KEY `fk_usuarios_has_cursos_cursos1_idx` (`cursos_id`),
+  KEY `fk_usuarios_has_cursos_usuarios1_idx` (`usuarios_id`),
+  CONSTRAINT `fk_cursos_usuarios` FOREIGN KEY (`cursos_id`) REFERENCES `cursos` (`id`),
+  CONSTRAINT `fk_usuarios_cursos` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+
+  API Usuarios
+  registrarse
+  login
+  recuperar contraseña
+  buscar cursos
+  ver curso
+  buscar tutores
+  editar su perfil
+
+  //valoraciones//
+  //comentarios//
+  ///registrar Tutor///
+  ///crear curso///
+  ///modificar curso///
+
+Registrarse (crear usuario):
+
+    Método: POST
+    URL: hackablock/register
+    Token: No
+    Body:
+        nombre_completo
+        email
+        password
+        password_repetida
+
+
+Ver información de mi usuario:
+
+    Método: GET
+    URL: hackablock/users/:id
+    Token: Si (el token del usuario que estoy viendo)
+    Devuelve:
+        id
+        email
+        nombre_completo
+        biografia
+        avatar
+        fecha_registro
+        fecha_modificacion
+
+Editar datos de un usuario:
+
+    Método: PUT / PATCH
+    URL: hackablock/users/:id
+    Token: Si (el token del usuario que estoy editando)
+    Body:
+        email
+        password?
+        nombre_completo
+        biografia
+        avatar
+
+/////////////////////////////////////////////////////////////////
+CONSULTAS SQL
+    CREAR USUARIO
+
+    INSERT INTO usuarios (nombre, apellido, email, contraseña, biografia, sitio_web, tutor, admin, tutor_direccion, tutor_titulo, tutor_telefono, tutor_precio, tutor_valoracion, tutor_paypal, categoria_blockchain, categoria_bitcoin, categoria_cripto, categoria_ethereum, categoria_hyperledger) VALUES ('Marco', 'Durán', 'marco@gmail.com', '123456', 'Hola soy yo', 'hackablock.dev', '1', '1', 'Calle Pim', 'Licenciado', '666666666', '50', '5', 'paypal', '1', '1', '1', '0', '1');
+
+    CREAR CURSO 
+
+INSERT INTO cursos (titulo, duracion, precio, parrafo_1, parrafo_2, imagen, id_tutor, avatar_tutor, valoracion, nivel, fecha_creacion, n_visitas, categoria_blockchain, categoria_bitcoin, categoria_cripto, categoria_ethereum, categoria_hyperledger) VALUES ('Blockchain', '180', '20', 'qwe', 'asd', 'imagen', '1', 'avatar', '5', 'Intermedio', '2021-05-03', '1', '1', '0', '0', '0', '0');
+
+
+    CURSOS MAS RECIENTES
+
+        SELECT * FROM hackablock.cursos ORDER BY fecha_creacion DESC;
+
+    CURSOS POR categoria
+
+        SELECT * FROM hackablock.cursos WHERE categoria_bitcoin = 1;
+
+    BUSQUEDA DE UN CURSO
+
+        SELECT * FROM hackablock.cursos WHERE id=21;
+    MODIFICAR CURSO
+        UPDATE `hackablock`.`cursos` SET `precio` = '30' WHERE (`id` = '19');
+            MODIFICAR USUARIO
+        UPDATE `hackablock`.`usuarios` SET `contraseña` = '4562', `biografia` = 'Es marco2', `avatar` = 'avatar marco2', `admin` = '1', `tutor_direccion` = 'Su casa2', `tutor_titulo` = 'Licenciado2' WHERE (`id` = '2');
+
+FILTROS DE CURSOS
+    FILTRO POR nivel
+        SELECT * FROM hackablock.cursos WHERE nivel=3;
+    FILTRO POR categoria
+        SELECT * FROM hackablock.cursos WHERE categoria_bitcoin = 1;
+    FILTRO POR precio
+        GRATUITO
+            SELECT * FROM hackablock.cursos WHERE precio IS NULL;
+        DE PAGO
+            SELECT * FROM hackablock.cursos WHERE precio IS NOT NULL;
+    FILTRO POR valoracion
+        SELECT * FROM hackablock.cursos WHERE valoracion = 5;
+    FILTRO POR Tutor
+        SELECT * FROM hackablock.cursos WHERE id_tutor = 5;
+
+FILTRO DE TUTORES
+    FILTRO POR categoria
+        SELECT * FROM usuarios WHERE categoria_bitcoin = 1;
+    FILTRO POR precio
+        DE MENOR A MAYOR
+            SELECT * FROM usuarios WHERE tutor_precio IS NOT NULL ORDER BY tutor_precio ASC;
+        DE MAYOR A MENOR
+        SELECT * FROM usuarios WHERE tutor_precio IS NOT NULL ORDER BY tutor_precio DESC;
+    FILTRO POR VALORACION
+        DE MENOR A MAYOR
+            SELECT * FROM usuarios WHERE tutor_valoracion IS NOT NULL ORDER BY tutor_valoracion ASC;
+        DE MAYOR A MENOR
+            SELECT * FROM usuarios WHERE tutor_valoracion IS NOT NULL ORDER BY tutor_valoracion DESC;
+
+
+    
+
+
+
+  
