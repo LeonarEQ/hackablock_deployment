@@ -20,7 +20,7 @@ const whitelist = [process.env.FRONTEND_URL];
 const corsOptions = {
   // Revisar si la petición viene de un servidor en la lista blanca
   origin: (origin, callback) => {
-    console.log(origin);
+    //console.log(origin);
     const existe = whitelist.some((dominio) => dominio === origin);
     if (existe) {
       callback(null, true);
