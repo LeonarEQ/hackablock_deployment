@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8d9a9843.css",
+    "main.js": "/static/js/main.21890169.js",
+    "static/js/787.8e02d8f2.chunk.js": "/static/js/787.8e02d8f2.chunk.js",
+    "static/media/avatartestimonial.png": "/static/media/avatartestimonial.fc6151ec60c73730f690.png",
+    "static/media/imagentestimonial2.jpeg": "/static/media/imagentestimonial2.a40e5d51469c552d4ed6.jpeg",
+    "static/media/imagentestimonial.jpeg": "/static/media/imagentestimonial.2a3be12347f4aa25241f.jpeg",
+    "static/media/backbanner.jpeg": "/static/media/backbanner.1ca702062bf3c5cbab41.jpeg",
+    "static/media/sertutor2.jpg": "/static/media/sertutor2.e207f415d3686658a25e.jpg",
+    "static/media/Blockchain12-01.png": "/static/media/Blockchain12-01.dd21d7568e5bff262568.png",
+    "static/media/sertutor1.jpeg": "/static/media/sertutor1.1c783f4bd02dd8a2180a.jpeg",
+    "static/media/logousc.png": "/static/media/logousc.2b6fde24e0f68dde3b79.png",
+    "static/media/logouoc.png": "/static/media/logouoc.6b518247a87044b668f0.png",
+    "index.html": "/index.html",
+    "main.8d9a9843.css.map": "/static/css/main.8d9a9843.css.map",
+    "main.21890169.js.map": "/static/js/main.21890169.js.map",
+    "787.8e02d8f2.chunk.js.map": "/static/js/787.8e02d8f2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8d9a9843.css",
+    "static/js/main.21890169.js"
+  ]
+}
